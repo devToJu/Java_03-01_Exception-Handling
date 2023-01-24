@@ -10,10 +10,7 @@ public class Main {
     }
 
     public static void readFromFile(String fileName) {
-        FileReader reader = null;
-
-        try {
-            reader = new FileReader(fileName);
+        try (FileReader reader = new FileReader(fileName)) {
             System.out.println(reader.read());
         }
         catch (FileNotFoundException e) {
@@ -21,16 +18,6 @@ public class Main {
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-        finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                }
-                catch (IOException e) {
-                    System.out.println("Couldn't close reader: " + e.getMessage());
-                }
-            }
         }
     }
 }
