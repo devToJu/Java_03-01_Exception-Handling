@@ -5,8 +5,9 @@ public class Main {
         try (var criticalResource = new CriticalResource()) {
             criticalResource.doStuff();
         }
-        catch (OpeningException | DoingException | ClosingException e) {
-            System.out.println(e.getMessage());
+        catch (CriticalResourceException e) {
+            var causeException = e.getCause();
+            System.out.println(causeException.getMessage());
         }
     }
 }
