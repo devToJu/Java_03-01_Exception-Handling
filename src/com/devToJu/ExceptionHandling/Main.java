@@ -2,24 +2,16 @@ package com.devToJu.ExceptionHandling;
 
 public class Main {
     public static void main(String[] args) {
-        CriticalResource criticalResource = null;
+        /** ATTENTION:
+         * if Doing- and ClosingException occurs,
+         * only the first exception get caught!
+         * */
 
-        try {
-            criticalResource = new CriticalResource();
+        try (var criticalResource = new CriticalResource()) {
             criticalResource.doStuff();
         }
-        catch (OpeningException | DoingException e) {
+        catch (OpeningException | DoingException | ClosingException e) {
             System.out.println(e.getMessage());
-        }
-        finally {
-            if (criticalResource != null) {
-                try {
-                    criticalResource.close();
-                }
-                catch (ClosingException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
         }
     }
 }

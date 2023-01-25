@@ -1,6 +1,6 @@
 package com.devToJu.ExceptionHandling;
 
-public class CriticalResource {
+public class CriticalResource implements AutoCloseable {
     public CriticalResource() throws OpeningException {
         if (isRandomTrue(0.7))
             throw new OpeningException();
