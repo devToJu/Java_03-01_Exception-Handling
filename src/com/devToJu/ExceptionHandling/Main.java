@@ -8,10 +8,7 @@ public class Main {
             criticalResource = new CriticalResource();
             criticalResource.doStuff();
         }
-        catch (OpeningException e) {
-            System.out.println(e.getMessage());
-        }
-        catch (DoingException e) {
+        catch (OpeningException | DoingException e) {
             System.out.println(e.getMessage());
         }
         finally {
